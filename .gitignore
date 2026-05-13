@@ -1,0 +1,365 @@
+# =============================================
+# MultiAgentesLocal - .gitignore Profesional
+# =============================================
+# Sistema multi-agente con CrewAI, Ollama y Streamlit
+# Versión: 1.0.0
+# Fecha: 2024
+# =============================================
+
+# =============================================
+# PYTHON - Entornos Virtuales
+# =============================================
+# Entornos virtuales estándar
+venv/
+.venv/
+env/
+ENV/
+.ENV/
+
+# Poetry
+.poetry/
+
+# Pipenv
+Pipfile.lock
+
+# pdm
+.pdm.toml
+.pdm-python
+.pdm-build/
+
+# =============================================
+# PYTHON - Archivos Compilados y Cache
+# =============================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# =============================================
+# PYTHON - Testing y Cobertura
+# =============================================
+# pytest
+.pytest_cache/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# =============================================
+# CONFIGURACIÓN SENSIBLE Y SEGURIDAD
+# =============================================
+# Variables de entorno
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Archivos de configuración sensibles
+config/secrets.json
+config/credentials.json
+secrets.json
+credentials.json
+
+# LangSmith / LangChain
+langsmith.env
+langchain.env
+
+# Ollama configuración local
+.ollama/
+ollama_config.json
+
+# =============================================
+# IDEs Y EDITORES
+# =============================================
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+
+# Atom
+.atom/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# =============================================
+# SISTEMA OPERATIVO
+# =============================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# =============================================
+# LOGS Y ARCHIVOS TEMPORALES
+# =============================================
+# Logs generales
+*.log
+logs/
+log/
+*.log.*
+app.log
+error.log
+debug.log
+
+# Archivos temporales
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.orig
+*.swp
+*.swo
+
+# Directorios temporales
+tmp/
+temp/
+.cache/
+
+# =============================================
+# DOCKER
+# =============================================
+# Imágenes y contenedores locales
+.dockerignore
+
+# Docker Compose overrides
+docker-compose.override.yml
+docker-compose.*.yml
+
+# Docker volumes (si se usan bind mounts)
+.docker/
+
+# =============================================
+# STREAMLIT
+# =============================================
+# Configuración de Streamlit (mantener solo config.toml si es necesario)
+.streamlit/secrets.toml
+.streamlit/config.toml
+
+# =============================================
+# CI/CD Y DEPLOYMENT
+# =============================================
+# GitHub Actions
+.github/workflows/*.log
+
+# Heroku
+Procfile
+
+# =============================================
+# BASE DE DATOS
+# =============================================
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+# PostgreSQL (si se usa localmente)
+postgres_data/
+
+# =============================================
+# HERRAMIENTAS DE DESARROLLO
+# =============================================
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# pyre
+.pyre/
+
+# pytype
+.pytype/
+
+# Cython
+*.pyx
+*.pxd
+*.pxi
+
+# =============================================
+# DOCUMENTACIÓN
+# =============================================
+# Sphinx documentation
+docs/_build/
+docs/build/
+
+# MkDocs
+site/
+
+# =============================================
+# ARCHIVOS DE LICENCIA Y LEGAL
+# =============================================
+# Mantener solo LICENSE si existe
+# LICENSE-*.txt
+
+# =============================================
+# ARCHIVOS PERSONALES
+# =============================================
+# Notas personales
+NOTES.md
+TODO.md
+notes/
+todo/
+
+# =============================================
+# BACKUPS Y SNAPSHOTS
+# =============================================
+*.tar.gz
+*.zip
+*.7z
+*.rar
+backup/
+backups/
+
+# =============================================
+# ARCHIVOS DE RED
+# =============================================
+# SSH keys (nunca subir)
+.ssh/
+id_rsa
+id_rsa.pub
+known_hosts
+
+# =============================================
+# DEPENDENCIAS DE SISTEMA
+# =============================================
+# Node.js (si se usa para tooling)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =============================================
+# ARCHIVOS ESPECÍFICOS DEL PROYECTO
+# =============================================
+# Archivos de configuración específicos
+config/local_config.py
+config/development.py
+config/production.py
+
+# Archivos de datos de ejemplo (si son grandes)
+data/large_files/
+data/cache/
+
+# Modelos descargados (Ollama, etc.)
+models/
+*.bin
+*.gguf
+
+# =============================================
+# EXCEPCIONES - ARCHIVOS A MANTENER
+# =============================================
+# Mantener estos archivos incluso si coinciden con patrones arriba
+!.env.example
+!.github/workflows/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!README.md
+!docs/
+!docs/*.md
+
+# =============================================
+# FIN DEL ARCHIVO
+# =============================================
