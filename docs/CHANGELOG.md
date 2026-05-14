@@ -72,11 +72,12 @@
 ```
 crewai==0.28.0
 crewai-tools==0.1.6
-langchain-ollama==0.1.0
+langchain-ollama==1.1.0
 streamlit==1.28.1
 python-dotenv==1.0.0
 requests==2.31.0
-pytest==7.4.3
+langsmith==0.8.4
+pytest>=8.0.0,<9.0.0
 pytest-cov==4.1.0
 pytest-asyncio==0.21.1
 mock==5.1.0
@@ -98,6 +99,50 @@ mock==5.1.0
 - Marcadores de tests
 
 #### **.gitignore** (Completo)
+
+---
+
+## 📋 Historial de Versiones
+
+### v1.0.0 (Actual)
+
+#### ✨ Nuevas Características
+- **LangSmith Tracing**: Integración completa con LangSmith para monitoreo detallado de ejecuciones
+- **Modelo Local**: Soporte para qwen2.5-coder:7b (modelo local optimizado)
+- **Arquitectura Modular**: Separación clara entre agentes programador y escritor
+- **Configuración Centralizada**: Archivo config.py para todas las constantes
+- **Suite de Tests Completa**: 17 tests con 100% de cobertura
+
+#### 🔧 Mejoras Técnicas
+- **ChatOllama Integration**: Reemplazo de LLM de CrewAI por ChatOllama para mejor compatibilidad
+- **Memory Management**: Deshabilitación de memoria y embedder de CrewAI para evitar dependencias OpenAI
+- **Error Handling**: Mejor manejo de errores en resultados de kickoff
+- **UTF-8 Support**: Soporte completo para caracteres especiales en Windows
+- **Task Callbacks**: Callbacks personalizados para trazabilidad por tarea
+
+#### 🐛 Correcciones
+- **Model Configuration**: Actualización de modelo por defecto a qwen2.5-coder:7b
+- **Test Expectations**: Alineación de tests con configuración real del usuario
+- **Link Navigation**: Corrección de enlaces en tabla de contenidos del README
+- **Documentation Sync**: Sincronización de toda la documentación con cambios implementados
+
+#### 📚 Documentación
+- **README.md**: Actualización completa con enlaces funcionales
+- **docs/CHANGELOG.md**: Historial de versiones actualizado
+- **docs/ARCHITECTURE.md**: Documentación técnica actualizada
+- **docs/CONTRIBUTING.md**: Guía de contribución con ejemplos correctos
+- **docs/QUICKSTART.md**: Guía de inicio con modelo correcto
+
+---
+
+### v0.1.0 (Inicial)
+
+#### ✨ Características Iniciales
+- Sistema básico de multi-agentes con CrewAI
+- Interfaz Streamlit funcional
+- Integración básica con Ollama
+- Tests unitarios iniciales
+- Documentación básica
 - Python artifacts
 - Virtual environments
 - IDE files

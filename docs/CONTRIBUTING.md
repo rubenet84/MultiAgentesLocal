@@ -104,7 +104,7 @@ def get_programador_agent() -> Agent:
     Returns:
         Agent: Agente configurado.
     """
-    llm = ChatOllama(model="qwen2.5-coder:latest")
+    llm = ChatOllama(model="qwen2.5-coder:7b")
     return Agent(
         role="Programador",
         goal="Escribir código limpio",
@@ -113,7 +113,7 @@ def get_programador_agent() -> Agent:
 
 # ❌ Incorrecto
 def get_agent():
-    llm=ChatOllama(model="qwen2.5-coder:latest")
+    llm=ChatOllama(model="qwen2.5-coder:7b")
     return Agent(role="Programador", goal="Escribir código limpio", llm=llm)
 ```
 

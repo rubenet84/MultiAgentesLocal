@@ -10,18 +10,18 @@ Sistema avanzado de multi-agentes locales que orquesta inteligencia artificial p
 
 ## 📋 Tabla de Contenidos
 
-- [Características Principales](#características-principales)
-- [Documentación](#documentación)
-- [Requisitos del Sistema](#requisitos-del-sistema)
-- [Instalación](#instalación)
-- [Estructura del Proyecto](#estructura-del-proyecto)
-- [Uso](#uso)
-- [Configuración](#configuración)
-- [Tests](#tests)
-- [Arquitectura](#arquitectura)
-- [Desarrollo](#desarrollo)
-- [Troubleshooting](#troubleshooting)
-- [Contribuciones](#contribuciones)
+- [Características Principales](#-características-principales)
+- [Documentación](#-documentación)
+- [Requisitos del Sistema](#-requisitos-del-sistema)
+- [Instalación](#-instalación)
+- [Estructura del Proyecto](#-estructura-del-proyecto)
+- [Uso](#-uso)
+- [Configuración](#-configuración)
+- [Tests](#-tests)
+- [Arquitectura](#-arquitectura)
+- [Desarrollo](#-desarrollo)
+- [Troubleshooting](#-troubleshooting)
+- [Contribuciones](#-contribuciones)
 
 ---
 

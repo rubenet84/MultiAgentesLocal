@@ -18,6 +18,7 @@
 - **CrewAI**: Framework para orquestación multi-agente
 - **Ollama**: Servidor de LLM local
 - **LangChain**: Abstracción para integración con LLM
+- **LangSmith**: Monitoreo y trazabilidad de ejecuciones
 - **Streamlit**: Interfaz web interactiva
 
 ### Objetivos de Diseño
@@ -184,6 +185,22 @@ def get_programador_agent() -> Agent:
 - Ejecución del modelo
 - Manejo de timeout/errores
 
+### Capa de Monitoreo
+
+**LangSmith Integration**
+
+**Responsabilidades**:
+- Trazabilidad completa de ejecuciones
+- Monitoreo de rendimiento por tarea
+- Debugging de conversaciones LLM
+- Análisis de uso y costos
+
+**Características**:
+- Runs raíz para sesiones completas
+- Runs hijos para tareas individuales
+- Metadata detallada de agentes y prompts
+- Dashboard web para visualización
+
 ---
 
 ## Flujo de Datos
@@ -210,7 +227,7 @@ def get_programador_agent() -> Agent:
 └────────────────────────┬────────────────────────────────────┘
                          │
 ┌────────────────────────▼────────────────────────────────────┐
-│ 4. LLM (Ollama + qwen2.5-coder)                            │
+│ 4. LLM (Ollama + qwen2.5-coder:7b)                            │
 │    Genera: Código Python con validador                      │
 └────────────────────────┬────────────────────────────────────┘
                          │
@@ -222,7 +239,7 @@ def get_programador_agent() -> Agent:
 └────────────────────────┬────────────────────────────────────┘
                          │
 ┌────────────────────────▼────────────────────────────────────┐
-│ 6. LLM (Ollama + qwen2.5-coder)                            │
+│ 6. LLM (Ollama + qwen2.5-coder:7b)                            │
 │    Genera: Documentación Markdown                           │
 └────────────────────────┬────────────────────────────────────┘
                          │

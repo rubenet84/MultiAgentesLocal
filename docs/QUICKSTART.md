@@ -17,7 +17,7 @@ pip install -r requirements.txt
 
 ```bash
 # En terminal separada
-ollama pull qwen2.5-coder:latest
+ollama pull qwen2.5-coder:7b
 ollama serve
 ```
 
@@ -82,7 +82,7 @@ ollama serve  # En terminal separada
 
 ### "Model not found"
 ```bash
-ollama pull qwen2.5-coder:latest
+ollama pull qwen2.5-coder:7b
 ```
 
 ### Puerto 8501 en uso
