@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 # Cargar variables de entorno
 load_dotenv()
 
-# Eliminar claves OpenAI placeholder que rompen las llamadas si no se usan
+# Eliminar claves placeholder que rompen las llamadas si no se usan
 def _normalize_api_key(value: str | None) -> str | None:
     if value is None:
         return None
@@ -22,16 +22,23 @@ OPENAI_API_KEY = _normalize_api_key(os.getenv("OPENAI_API_KEY"))
 if OPENAI_API_KEY is None:
     os.environ.pop("OPENAI_API_KEY", None)
 
+LANGCHAIN_API_KEY = _normalize_api_key(os.getenv("LANGCHAIN_API_KEY"))
+if LANGCHAIN_API_KEY is None:
+    os.environ.pop("LANGCHAIN_API_KEY", None)
+
 os.environ.setdefault("CREWAI_TRACING_ENABLED", "true")
 
 # ==================== CONFIGURACIÓN OLLAMA ====================
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "qwen2.5-coder:7b")
 
+# ==================== CONFIGURACIÓN OPENAI-COMPATIBLE (Ollama local) ===
+OPENAI_API_BASE = os.getenv("OPENAI_API_BASE", "http://localhost:11434/v1")
+OPENAI_MODEL_NAME = os.getenv("OPENAI_MODEL_NAME", OLLAMA_MODEL)
+
 # ==================== CONFIGURACIÓN LANGSMITH ====================
 LANGCHAIN_TRACING_V2 = os.getenv("LANGCHAIN_TRACING_V2", "false").lower() == "true"
-LANGCHAIN_ENDPOINT = os.getenv("LANGCHAIN_ENDPOINT")
-LANGCHAIN_API_KEY = os.getenv("LANGCHAIN_API_KEY")
+LANGCHAIN_ENDPOINT = os.getenv("LANGCHAIN_ENDPOINT", "https://eu.api.smith.langchain.com")
 LANGCHAIN_PROJECT = os.getenv("LANGCHAIN_PROJECT")
 
 # ==================== CONFIGURACIÓN DE AGENTES ====================

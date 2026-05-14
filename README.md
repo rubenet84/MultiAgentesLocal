@@ -261,6 +261,8 @@ LANGCHAIN_API_KEY=tu_api_key_aqui
 LANGCHAIN_PROJECT=MultiAgentesLocal
 ```
 
+> Nota: el proyecto desactiva de forma segura la telemetría remota de CrewAI hacia `telemetry.crewai.com` cuando no hay un collector OTLP configurado. Solo se envían trazas a LangSmith si `LANGCHAIN_API_KEY` está presente.
+
 ### Configurar Streamlit
 
 **Archivo**: `.streamlit/config.toml` (crear si no existe)

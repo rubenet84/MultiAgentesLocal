@@ -6,13 +6,32 @@ from dotenv import load_dotenv
 # 1. CARGA DE VARIABLES Y CONFIGURACIÓN DE ENTORNO
 load_dotenv()
 
-# Eliminar claves placeholder OpenAI para evitar errores 401
-if os.getenv("OPENAI_API_KEY", "").strip().lower() in {"", "na", "null", "none"}:
+def _normalize_api_key(value: str | None) -> str | None:
+    if value is None:
+        return None
+    if value.strip().lower() in {"", "na", "null", "none"}:
+        return None
+    return value
+
+# Eliminar claves placeholder para evitar errores 401/403
+OPENAI_API_KEY = _normalize_api_key(os.getenv("OPENAI_API_KEY"))
+if OPENAI_API_KEY is None:
     os.environ.pop("OPENAI_API_KEY", None)
 
-# Forzamos los endpoints según tu configuración de LangSmith en Europa
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_ENDPOINT"] = "https://eu.api.smith.langchain.com"
+LANGCHAIN_API_KEY = _normalize_api_key(os.getenv("LANGCHAIN_API_KEY"))
+if LANGCHAIN_API_KEY is None:
+    os.environ.pop("LANGCHAIN_API_KEY", None)
+
+# Desactivar exportación OTLP si no hay collector configurado
+os.environ.setdefault("OTEL_TRACES_EXPORTER", "none")
+# Desactivar la telemetría de CrewAI para evitar intentos de conexión a telemetry.crewai.com
+os.environ.setdefault("OTEL_SDK_DISABLED", "true")
+os.environ.setdefault("CREWAI_DISABLE_TELEMETRY", "true")
+os.environ.setdefault("CREWAI_DISABLE_TRACKING", "true")
+
+# Forzamos valores por defecto de LangSmith solo cuando no vienen del .env
+os.environ.setdefault("LANGCHAIN_TRACING_V2", "true")
+os.environ.setdefault("LANGCHAIN_ENDPOINT", "https://eu.api.smith.langchain.com")
 # Aseguramos que CrewAI trace las ejecuciones si el proyecto lo permite
 os.environ.setdefault("CREWAI_TRACING_ENABLED", "true")
 
@@ -38,18 +57,24 @@ print(f"--- COMPROBANDO CONEXIÓN ---")
 print(f"📂 Proyecto: {os.getenv('LANGCHAIN_PROJECT')}")
 print(f"🌐 Endpoint: {os.getenv('LANGCHAIN_ENDPOINT')}")
 
-client = Client(
-    api_url=os.getenv("LANGCHAIN_ENDPOINT"),
-    api_key=os.getenv("LANGCHAIN_API_KEY"),
-)
-try:
-    # Usamos list_projects en lugar de whoami para evitar el error de atributo
-    client.list_projects()
-    print("✅ LangSmith: Conexión establecida con éxito.")
-except Exception as e:
-    # Si falla, lanzamos un aviso pero permitimos que Streamlit siga adelante
-    print(f"⚠️ LangSmith: Aviso de conexión (el tracing intentará funcionar igual).")
-    print(f"Detalle: {e}")
+langchain_endpoint = os.getenv("LANGCHAIN_ENDPOINT")
+langchain_api_key = os.getenv("LANGCHAIN_API_KEY")
+client = None
+if langchain_endpoint and langchain_api_key:
+    client = Client(
+        api_url=langchain_endpoint,
+        api_key=langchain_api_key,
+    )
+    try:
+        # Usamos list_projects en lugar de whoami para evitar el error de atributo
+        client.list_projects()
+        print("✅ LangSmith: Conexión establecida con éxito.")
+    except Exception as e:
+        # Si falla, lanzamos un aviso pero permitimos que Streamlit siga adelante
+        print("⚠️ LangSmith: Aviso de conexión (el tracing intentará funcionar igual).")
+        print(f"Detalle: {e}")
+else:
+    print("⚠️ LangSmith no está configurado: falta LANGCHAIN_ENDPOINT o LANGCHAIN_API_KEY.")
 
 # 3. CONFIGURACIÓN DE LA INTERFAZ STREAMLIT
 st.set_page_config(page_title="Multi-Agente Profesional", layout="wide")

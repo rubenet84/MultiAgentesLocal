@@ -1,6 +1,12 @@
 import os
 from uuid import uuid4
 from dotenv import load_dotenv
+
+# Desactivar la telemetría de CrewAI antes de importar los módulos que la inicializan.
+os.environ.setdefault("OTEL_SDK_DISABLED", "true")
+os.environ.setdefault("CREWAI_DISABLE_TELEMETRY", "true")
+os.environ.setdefault("CREWAI_DISABLE_TRACKING", "true")
+
 from crewai import Crew, Process, Task
 # Asegúrate de que las rutas de importación coincidan con tu estructura de carpetas
 from .sub_agents.programador.agent import get_programador_agent
