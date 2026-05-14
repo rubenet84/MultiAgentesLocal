@@ -49,7 +49,7 @@ class TestAgentModules:
             
             # Verificar que ChatOllama fue llamado con los parámetros correctos
             mock_chat.assert_called_once_with(
-                model="qwen2.5-coder:latest",
+                model="qwen2.5-coder:7b",
                 base_url="http://localhost:11434"
             )
 
@@ -65,7 +65,7 @@ class TestAgentModules:
                 pass  # Esperado
             
             mock_chat.assert_called_once_with(
-                model="qwen2.5-coder:latest",
+                model="qwen2.5-coder:7b",
                 base_url="http://localhost:11434"
             )
 
@@ -88,8 +88,8 @@ class TestAgentModules:
                 prog_call = mock_prog.call_args
                 esc_call = mock_esc.call_args
                 
-                assert prog_call[1]['model'] == 'qwen2.5-coder:latest'
-                assert esc_call[1]['model'] == 'qwen2.5-coder:latest'
+                assert prog_call[1]['model'] == 'qwen2.5-coder:7b'
+                assert esc_call[1]['model'] == 'qwen2.5-coder:7b'
                 assert prog_call[1]['base_url'] == 'http://localhost:11434'
                 assert esc_call[1]['base_url'] == 'http://localhost:11434'
 

@@ -10,14 +10,29 @@ from dotenv import load_dotenv
 # Cargar variables de entorno
 load_dotenv()
 
+# Eliminar claves OpenAI placeholder que rompen las llamadas si no se usan
+def _normalize_api_key(value: str | None) -> str | None:
+    if value is None:
+        return None
+    if value.strip().lower() in {"", "na", "null", "none"}:
+        return None
+    return value
+
+OPENAI_API_KEY = _normalize_api_key(os.getenv("OPENAI_API_KEY"))
+if OPENAI_API_KEY is None:
+    os.environ.pop("OPENAI_API_KEY", None)
+
+os.environ.setdefault("CREWAI_TRACING_ENABLED", "true")
+
 # ==================== CONFIGURACIÓN OLLAMA ====================
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "qwen2.5-coder:latest")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "qwen2.5-coder:7b")
 
 # ==================== CONFIGURACIÓN LANGSMITH ====================
 LANGCHAIN_TRACING_V2 = os.getenv("LANGCHAIN_TRACING_V2", "false").lower() == "true"
-LANGCHAIN_API_KEY = os.getenv("LANGCHAIN_API_KEY", "")
-LANGCHAIN_PROJECT = os.getenv("LANGCHAIN_PROJECT", "MultiAgentesLocal")
+LANGCHAIN_ENDPOINT = os.getenv("LANGCHAIN_ENDPOINT")
+LANGCHAIN_API_KEY = os.getenv("LANGCHAIN_API_KEY")
+LANGCHAIN_PROJECT = os.getenv("LANGCHAIN_PROJECT")
 
 # ==================== CONFIGURACIÓN DE AGENTES ====================
 PROGRAMADOR_ROLE = "Programador Senior de Python"

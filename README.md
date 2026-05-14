@@ -83,7 +83,7 @@ cat docs/CHANGELOG.md      # Historial de cambios
 ### Dependencias Externas
 - **Ollama**: Servidor LLM local
   - Descargar: https://ollama.ai
-  - Modelo requerido: `qwen2.5-coder:latest` (14GB)
+  - Modelo requerido: `qwen2.5-coder:7b` (14GB)
 
 ---
 
@@ -132,7 +132,7 @@ echo "LANGCHAIN_PROJECT=MultiAgentesLocal" >> .env
 # Descargar Ollama desde: https://ollama.ai
 
 # Instalar el modelo (en terminal separada)
-ollama pull qwen2.5-coder:latest
+ollama pull qwen2.5-coder:7b
 
 # Ejecutar Ollama (por defecto en puerto 11434)
 ollama serve
@@ -239,7 +239,7 @@ print(resultado)
 
 ```python
 llm = ChatOllama(
-    model="qwen2.5-coder:latest",      # Cambiar modelo aquí
+    model="qwen2.5-coder:7b",      # Cambiar modelo aquí
     base_url="http://localhost:11434"   # URL del servidor Ollama
 )
 ```
@@ -404,7 +404,7 @@ from langchain_ollama import ChatOllama
 
 def get_nuevo_agente_agent():
     llm = ChatOllama(
-        model="qwen2.5-coder:latest",
+        model="qwen2.5-coder:7b",
         base_url="http://localhost:11434"
     )
     
@@ -534,7 +534,7 @@ ollama list
 **Solución**:
 ```bash
 # Descargar modelo
-ollama pull qwen2.5-coder:latest
+ollama pull qwen2.5-coder:7b
 
 # Verificar
 ollama list | grep qwen2.5-coder
